@@ -1,6 +1,7 @@
 ### Set up our environment
 import os
 import numpy as np
+import mglearn as mgl
 import sklearn as sk
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -116,9 +117,10 @@ plt.xlabel('log fLength in mm')
 plt.show()
 
 #For Width, we would have to implement a solution for the existence
-#of 0 values if we want to log-normalize. One solution would be to
-#impute using mean value. SimpleImputer only allows imputation of
-#NA values, so here I impute zeros to mean manually
+#of 0 values if we want to log-normalize. Here, I believe zeros
+#represent missing values. So, one solution would be to impute
+#using mean value. SimpleImputer only allows imputation of NA
+#values, so here I impute zeros to mean manually.
 transform_df['fWidth'] = GAMMA['fWidth']
 fWidth_mean = np.mean(transform_df['fWidth'])
 transform_df['fWidth'] = transform_df['fWidth'].replace(0, fWidth_mean)
